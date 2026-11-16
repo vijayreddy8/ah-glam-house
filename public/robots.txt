@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 
-Sitemap: https://ahglamours.torstaq.in/sitemap.xml
+Sitemap: https://ahglamhouse.torstaq.in/sitemap.xml
