@@ -11,13 +11,14 @@ const nodemailer=require('nodemailer');
 const app=express();
 const PORT=Number(process.env.PORT||3000);
 const ROOT=__dirname;
-const DATA=path.join(ROOT,'data');
+const DATA=process.env.VERCEL?path.join('/tmp','ah-glam-house-data'):path.join(ROOT,'data');
 fs.mkdirSync(DATA,{recursive:true});
 const db=new sqlite3.Database(path.join(DATA,'glamhouse.sqlite'));
 const JWT_SECRET=process.env.JWT_SECRET||'dev-only-change-me';
 const ADMIN_USERNAME=process.env.ADMIN_USERNAME||'admin';
 const ADMIN_PASSWORD=process.env.ADMIN_PASSWORD||'admin123';
 
+app.set('trust proxy',1);
 app.use(express.json({limit:'50kb'}));
 app.use(express.urlencoded({extended:false}));
 app.use(rateLimit({windowMs:15*60*1000,max:100,standardHeaders:true,legacyHeaders:false}));
